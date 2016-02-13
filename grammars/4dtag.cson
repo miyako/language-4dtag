@@ -1,0 +1,695 @@
+'scopeName': 'text.xml.4dtag'
+'fileTypes': [
+  'xml'
+  'xsl'
+  'xlf'
+  'htm'
+  'html'
+  'xhtml'
+  'shtm'
+  'shtml'
+  'svg'
+  '4si'
+  'match'
+  '4dsettings'
+  '4dpreferences'
+  '4dlink'
+  'license4d'
+  '4dtag'
+]
+'name': '4DTAG'
+'patterns': [
+  {
+    'begin': '(<)([a-zA-Z0-9:-]++)(?=[^>]*></\\2>)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.html'
+      '2':
+        'name': 'entity.name.tag.html'
+    'end': '(>(\\s*<)/)(\\2)(>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.html'
+      '2':
+        'name': 'meta.scope.between-tag-pair.html'
+      '3':
+        'name': 'entity.name.tag.html'
+      '4':
+        'name': 'punctuation.definition.tag.html'
+    'name': 'meta.tag.any.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+    ]
+  }
+  {
+    'begin': '(<\\?)(xml)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tag.html'
+      '2':
+        'name': 'entity.name.tag.xml.html'
+    'end': '(\\?>)'
+    'name': 'meta.tag.preprocessor.xml.html'
+    'patterns': [
+      {
+        'include': '#tag-generic-attribute'
+      }
+      {
+        'include': '#string-double-quoted'
+      }
+      {
+        'include': '#string-single-quoted'
+      }
+    ]
+  }
+  {
+    'include': '#fourd-tag'
+  }
+  {
+    'begin': '<!--'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.html'
+    'end': '--\\s*>'
+    'name': 'comment.block.html'
+    'patterns': [
+      {
+        'match': '--(?!-*\\s*>)'
+        'name': 'invalid.illegal.bad-comments-or-CDATA.html'
+      }
+      {
+        'include': '#embedded-code'
+      }
+    ]
+  }
+  {
+    'begin': '<!'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.tag.html'
+    'end': '>'
+    'name': 'meta.tag.sgml.html'
+    'patterns': [
+      {
+        'begin': '(?i:DOCTYPE)'
+        'captures':
+          '1':
+            'name': 'entity.name.tag.doctype.html'
+        'end': '(?=>)'
+        'name': 'meta.tag.sgml.doctype.html'
+        'patterns': [
+          {
+            'match': '"[^">]*"'
+            'name': 'doctype.identifiers-and-DTDs.html'
+          }
+        ]
+      }
+      {
+        'begin': '\\[CDATA\\['
+        'end': ']](?=>)'
+        'name': 'constant.other.inline-data.html'
+      }
+      {
+        'match': '(\\s*)(?!--|>)\\S(\\s*)'
+        'name': 'invalid.illegal.bad-comments-or-CDATA.html'
+      }
+    ]
+  }
+  {
+    'include': '#embedded-code'
+  }
+  {
+    'begin': '(?:^\\s+)?(<)((?i:style))\\b(?![^>]*/>)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tag.html'
+      '2':
+        'name': 'entity.name.tag.style.html'
+      '3':
+        'name': 'punctuation.definition.tag.html'
+    'end': '(</)((?i:style))(>)(?:\\s*\\n)?'
+    'name': 'source.css.embedded.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+      {
+        'begin': '(>)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.tag.html'
+        'end': '(?=</(?i:style))'
+        'patterns': [
+          {
+            'include': '#embedded-code'
+          }
+          {
+            'include': 'source.css'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?:^\\s+)?(<)((?i:script))\\b(?=[^>]*\\btype\\s*=\\s*[\'"]?text/(x-handlebars|(x-handlebars-)?template|html)[\'"]?)(?![^>]*/>)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.html'
+      '2':
+        'name': 'entity.name.tag.script.html'
+    'end': '(?<=</(script|SCRIPT))(>)(?:\\s*\\n)?'
+    'endCaptures':
+      '2':
+        'name': 'punctuation.definition.tag.html'
+    'contentName': 'text.embedded.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+      {
+        'begin': '(?<!</(?:script|SCRIPT))(>)'
+        'captures':
+          '1':
+            'name': 'punctuation.definition.tag.html'
+          '2':
+            'name': 'entity.name.tag.script.html'
+        'end': '(</)((?i:script))'
+        'patterns': [
+          {
+            'include': 'text.html.basic'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?:^\\s+)?(<)((?i:script))\\b(?=[^>]*\\btype\\s*=\\s*[\'"]?text/coffeescript[\'"]?)(?![^>]*/>)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.html'
+      '2':
+        'name': 'entity.name.tag.script.html'
+    'end': '(?<=</(script|SCRIPT))(>)(?:\\s*\\n)?'
+    'endCaptures':
+      '2':
+        'name': 'punctuation.definition.tag.html'
+    'contentName': 'source.coffee.embedded.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+      {
+        'begin': '(?<!</(?:script|SCRIPT))(>)'
+        'captures':
+          '1':
+            'name': 'punctuation.definition.tag.html'
+          '2':
+            'name': 'entity.name.tag.script.html'
+        'end': '(</)((?i:script))'
+        'patterns': [
+          {
+            'captures':
+              '1':
+                'name': 'punctuation.definition.comment.coffee'
+            'match': '(#).*?((?=</script)|$\\n?)'
+            'name': 'comment.line.number-sign.coffee'
+          }
+          {
+            'include': 'source.coffee'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?:^\\s+)?(<)((?i:script))\\b(?![^>]*/>)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.html'
+      '2':
+        'name': 'entity.name.tag.script.html'
+    'end': '(?<=</(script|SCRIPT))(>)(?:\\s*\\n)?'
+    'endCaptures':
+      '2':
+        'name': 'punctuation.definition.tag.html'
+    'contentName': 'source.js.embedded.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+      {
+        'begin': '(?<!</(?:script|SCRIPT))(>)'
+        'captures':
+          '1':
+            'name': 'punctuation.definition.tag.html'
+          '2':
+            'name': 'entity.name.tag.script.html'
+        'end': '(</)((?i:script))'
+        'patterns': [
+          {
+            'captures':
+              '1':
+                'name': 'punctuation.definition.comment.js'
+            'match': '(//).*?((?=</script)|$\\n?)'
+            'name': 'comment.line.double-slash.js'
+          }
+          {
+            'begin': '/\\*'
+            'captures':
+              '0':
+                'name': 'punctuation.definition.comment.js'
+            'end': '\\*/|(?=</script)'
+            'name': 'comment.block.js'
+          }
+          {
+            'include': 'source.js'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(</?)((?i:body|head|html)\\b)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tag.html'
+      '2':
+        'name': 'entity.name.tag.structure.any.html'
+    'end': '(>)'
+    'name': 'meta.tag.structure.any.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+    ]
+  }
+  {
+    'begin': '(</?)((?i:address|blockquote|dd|div|section|article|aside|header|footer|nav|menu|dl|dt|fieldset|form|frame|frameset|h1|h2|h3|h4|h5|h6|iframe|noframes|object|ol|p|ul|applet|center|dir|hr|pre)\\b)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.any.html'
+    'end': '(>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.end.html'
+    'name': 'meta.tag.block.any.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+    ]
+  }
+  {
+    'begin': '(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)\\b)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.inline.any.html'
+    'end': '((?: ?/)?>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.end.html'
+    'name': 'meta.tag.inline.any.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+    ]
+  }
+  {
+    'begin': '(</?)([a-zA-Z0-9:-]+)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.other.html'
+    'end': '(>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.end.html'
+    'name': 'meta.tag.other.html'
+    'patterns': [
+      {
+        'include': '#tag-stuff'
+      }
+    ]
+  }
+  {
+    'include': '#entities'
+  }
+  {
+    'match': '<>'
+    'name': 'invalid.illegal.incomplete.html'
+  }
+]
+'repository':
+  'embedded-code':
+    'patterns': [
+      {
+        'include': '#smarty'
+      }
+      {
+        'include': '#python'
+      }
+    ]
+  'entities':
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.entity.html'
+          '3':
+            'name': 'punctuation.definition.entity.html'
+        'match': '(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)'
+        'name': 'constant.character.entity.html'
+      }
+      {
+        'match': '&'
+        'name': 'invalid.illegal.bad-ampersand.html'
+      }
+    ]
+  'python':
+    'begin': '(?:^\\s*)<\\?python(?!.*\\?>)'
+    'end': '\\?>(?:\\s*$\\n)?'
+    'name': 'source.python.embedded.html'
+    'patterns': [
+      {
+        'include': 'source.python'
+      }
+    ]
+  'smarty':
+    'patterns': [
+      {
+        'begin': '(\\{(literal)\\})'
+        'captures':
+          '1':
+            'name': 'source.smarty.embedded.html'
+          '2':
+            'name': 'support.function.built-in.smarty'
+        'end': '(\\{/(literal)\\})'
+      }
+      {
+        'begin': '{{|{'
+        'disabled': 1
+        'end': '}}|}'
+        'name': 'source.smarty.embedded.html'
+        'patterns': [
+          {
+            'include': 'source.smarty'
+          }
+        ]
+      }
+    ]
+  'string-double-quoted':
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.html'
+    'end': '"'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.html'
+    'name': ''
+    'patterns': [
+      {
+        'include': '#embedded-code'
+      }
+      {
+        'include': '#fourd-tag-with-formula'
+      }
+      {
+        'include': '#entities'
+      }
+    ]
+  'string-single-quoted':
+    'begin': '\''
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.html'
+    'end': '\''
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.html'
+    'name': 'string.quoted.single.html'
+    'patterns': [
+      {
+        'include': '#embedded-code'
+      }
+      {
+        'include': '#entities'
+      }
+    ]
+  'tag-generic-attribute':
+    'match': '(?<=[^=])\\b([a-zA-Z0-9:-]+)'
+    'name': 'entity.other.attribute-name.html'
+  'tag-id-attribute':
+    'begin': '\\b(id)\\b\\s*(=)'
+    'captures':
+      '1':
+        'name': 'entity.other.attribute-name.id.html'
+      '2':
+        'name': 'punctuation.separator.key-value.html'
+    'end': '(?<=\'|")|(?=\\s|>)'
+    'name': 'meta.attribute-with-value.id.html'
+    'patterns': [
+      {
+        'begin': '"'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.html'
+        'contentName': 'meta.toc-list.id.html'
+        'end': '"'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.html'
+        'name': ''
+        'patterns': [
+          {
+            'include': '#embedded-code'
+          }
+          {
+            'include': '#entities'
+          }
+        ]
+      }
+      {
+        'begin': '\''
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.html'
+        'contentName': 'meta.toc-list.id.html'
+        'end': '\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.html'
+        'name': 'string.quoted.single.html'
+        'patterns': [
+          {
+            'include': '#embedded-code'
+          }
+          {
+            'include': '#entities'
+          }
+        ]
+      }
+      {
+        'include': '#unquoted-attribute'
+      }
+    ]
+  'tag-stuff':
+    'patterns': [
+      {
+        'include': '#tag-id-attribute'
+      }
+      {
+        'include': '#tag-generic-attribute'
+      }
+      {
+        'include': '#string-double-quoted'
+      }
+      {
+        'include': '#string-single-quoted'
+      }
+      {
+        'include': '#embedded-code'
+      }
+      {
+        'include': '#unquoted-attribute'
+      }
+    ]
+  'unquoted-attribute':
+    'match': '(?<==)(?:[^\\s<>/\'"]|/(?!>))+'
+    'name': 'string.unquoted.html'
+
+  'fourd-tag':
+    'patterns': [
+      {
+        'include': '#fourd-tag-without-formula'
+      }
+      {
+        'include': '#fourd-tag-with-formula'
+      }
+      {
+        'include': '#fourd-dollar'
+      }
+    ]
+  'fourd-tag-with-formula':
+    'begin': '(?i:(<!--\\s*)((?:#?4D)(CODE|TEXT|HTML|EVAL|SCRIPT|INCLUDE|BASE|IF|ELSEIF|LOOP)))\\s+'
+    'captures':
+      '1':
+        'name': 'fourd-tag.comment.xml'
+      '2':
+        'name': 'fourd-tag.entity.name.section.4dtag'
+    'end': '\\s*(-->)'
+    'name': 'meta.fourd-tag.4dtag'
+    'patterns': [
+      {
+        'include': '#fourd-comment'
+      }
+      {
+        'include': '#fourd-declaration'
+      }
+      {
+        'include': '#fourd-declaration-array'
+      }
+      {
+        'include': '#fourd-command'
+      }
+      {
+        'include': '#fourd-constant-string'
+      }
+      {
+        'include': '#fourd-variable'
+      }
+      {
+        'include': '#fourd-control'
+      }
+      {
+        'include': '#fourd-constant-number'
+      }
+      {
+        'include': '#fourd-parameter'
+      }
+      {
+        'include': '#fourd-constant'
+      }
+    ]
+  'fourd-dollar':
+    'begin': '(?i:(\\$)((?:4D)(TEXT|HTML|EVAL)))\\s*\\('
+    'captures':
+      '1':
+        'name': 'fourd-dollar.comment.xml'
+      '2':
+        'name': 'fourd-tag.entity.name.section.4dtag'
+    'end': '\\)'
+    'name': 'meta.fourd-tag.4dtag'
+    'patterns': [
+      {
+        'include': '#fourd-comment'
+      }
+      {
+        'include': '#fourd-declaration'
+      }
+      {
+        'include': '#fourd-declaration-array'
+      }
+      {
+        'include': '#fourd-command'
+      }
+      {
+        'include': '#fourd-constant-string'
+      }
+      {
+        'include': '#fourd-variable'
+      }
+      {
+        'include': '#fourd-control'
+      }
+      {
+        'include': '#fourd-constant-number'
+      }
+      {
+        'include': '#fourd-parameter'
+      }
+      {
+        'include': '#fourd-constant'
+      }
+    ]
+  'fourd-tag-without-formula':
+    'match': '(?i:(<!--\\s*)((?:#?4D)(ENDLOOP|ELSE|ENDIF))\\s*(-->))'
+    'captures':
+      '1':
+        'name': 'fourd-tag.comment.xml'
+      '2':
+        'name': 'fourd-tag.entity.name.section.4dtag'
+      '4':
+        'name': 'fourd-tag.comment.xml'
+    'name': 'meta.fourd-tag.xml'
+  'fourd-comment':
+    'match': '(\\s*(?:`|//).*)'
+    'captures':
+      '1':
+        'name': 'fourd-comment.comment.line.4dtag'
+  'fourd-declaration':
+    'match': '[cC]_[a-zA-Z]+:C\\d+'
+    'name': 'fourd-declaration.entity.name.type.4dtag'
+  'fourd-declaration-array':
+    'match': '(?i:array|tableau)\\s[a-zA-Z]+:C\\d+'
+    'name': 'fourd-declaration-array.entity.name.type.4dtag'
+  'fourd-command':
+    'match': '[a-zA-Z_][a-zA-Z0-9 _]*:C\\d+'
+    'name': 'fourd-command.entity.name.function.4dtag'
+  'fourd-constant-string':
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'fourd-constant-string.string.quoted.4dtag'
+    'end': '(?<!\\\\)"'
+    'endCaptures':
+      '0':
+        'name': 'fourd-constant-string.string.quoted.4dtag'
+    'name': 'fourd-constant-string.string.quoted.4dtag'
+  'fourd-variable':
+    'match': '\\$[a-zA-Z_][a-zA-Z0-9 _]*'
+    'name': 'fourd-variable.variable.other.4dtag'
+  'fourd-control':
+    'patterns': [
+      {
+      'match': '^\\s*(?i:(if|si|while|tant que|for|boucle)\\s*\\()'
+      'captures':
+        '1':
+          'name': 'fourd-control-begin.keyword.control.4dtag'
+      }
+      {
+      'match': '^\\s*(?i:(end if|fin de si|end while|fin tant que|end for|fin de boucle|case of|else|end case|au cas ou|sinon|fin de cas))'
+      'captures':
+        '1':
+          'name': 'fourd-control-end.keyword.control.4dtag'
+      }
+      {
+      'match': '^\\s*(?i:(until|jusque)\\s*\\()'
+      'captures':
+        '1':
+          'name': 'fourd-control-end.keyword.control.4dtag'
+      }
+      {
+      'match': '^\\s*(?i:(repeat|repeter))'
+      'captures':
+        '1':
+          'name': 'fourd-control-begin.keyword.control.4dtag'
+      }
+    ]
+  'fourd-constant-number':
+    'match': '(\\d+(\\.\\d+)?(?i:e[+-]\\d+)?)'
+    'name': 'fourd-constant-number.constant.numeric.4dtag'
+  'fourd-parameter':
+    'match': '\\$[1-9][0-9]*'
+    'name': 'fourd-parameter.variable.parameter.4dtag'
+  'fourd-constant':
+    'match': '[a-zA-Z_][a-zA-Z0-9 _]*:K\\d+:\\d+'
+    'name': 'fourd-constant.constant.other.4dtag'
