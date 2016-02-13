@@ -573,6 +573,9 @@
         'include': '#fourd-control'
       }
       {
+        'include': '#fourd-constant-hex'
+      }
+      {
         'include': '#fourd-constant-number'
       }
       {
@@ -612,6 +615,9 @@
       }
       {
         'include': '#fourd-control'
+      }
+      {
+        'include': '#fourd-constant-hex'
       }
       {
         'include': '#fourd-constant-number'
@@ -690,6 +696,9 @@
   'fourd-constant-number':
     'match': '(\\d+(\\.\\d+)?(?i:e[+-]\\d+)?)'
     'name': 'fourd-constant-number.constant.numeric.4dtag'
+  'fourd-constant-hex':
+    'match': '0[xX]([0-9a-fA-F])+'
+    'name': 'fourd-constant-hex.constant.numeric.4dtag'
   'fourd-parameter':
     'match': '\\$[1-9][0-9]*'
     'name': 'fourd-parameter.variable.parameter.4dtag'
