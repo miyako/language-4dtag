@@ -1,17 +1,17 @@
 {
   "name": "language-4dtag",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Syntax highlighting for 4D Tags",
   "engines": {
     "atom": "*"
   },
   "dependencies": {},
   "repository": {
-  "type": "git",
-  "url": "https://github.com/miyako/language-4dtag.git"
-},
-"bugs": {
-  "url": "https://github.com/miyako/language-4dtag/issues"
-},
+    "type": "git",
+    "url": "https://github.com/miyako/language-4dtag.git"
+  },
+  "bugs": {
+    "url": "https://github.com/miyako/language-4dtag/issues"
+  },
   "license": "MIT"
 }
