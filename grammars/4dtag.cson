@@ -570,6 +570,12 @@
         'include': '#fourd-variable'
       }
       {
+        'include': '#fourd-field'
+      }
+      {
+        'include': '#fourd-table'
+      }
+      {
         'include': '#fourd-control'
       }
       {
@@ -612,6 +618,12 @@
       }
       {
         'include': '#fourd-variable'
+      }
+      {
+        'include': '#fourd-field'
+      }
+      {
+        'include': '#fourd-table'
       }
       {
         'include': '#fourd-control'
@@ -666,6 +678,12 @@
   'fourd-variable':
     'match': '\\$[a-zA-Z_][a-zA-Z0-9 _]*'
     'name': 'fourd-variable.variable.other.4dtag'
+  'fourd-table':
+    'match': '\\[[a-zA-Z_][a-zA-Z0-9 _]*:\\d+\\]'
+    'name': 'fourd-table.storage.type.table.4dtag'
+  'fourd-field':
+    'match': '\\[[a-zA-Z_][a-zA-Z0-9 _]*:\\d+\\][a-zA-Z_][a-zA-Z0-9 _]*:\\d+'
+    'name': 'fourd-table.storage.type.field.4dtag'
   'fourd-control':
     'patterns': [
       {
