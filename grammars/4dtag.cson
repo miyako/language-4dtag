@@ -143,6 +143,15 @@
         'end': '(?=</(?i:style))'
         'patterns': [
           {
+            'include': '#fourd-tag-without-formula'
+          }
+          {
+            'include': '#fourd-tag-with-formula'
+          }
+          {
+            'include': '#fourd-dollar'
+          }
+          {
             'include': '#embedded-code'
           }
           {
@@ -373,6 +382,7 @@
         'name': 'invalid.illegal.bad-ampersand.html'
       }
     ]
+
   'python':
     'begin': '(?:^\\s*)<\\?python(?!.*\\?>)'
     'end': '\\?>(?:\\s*$\\n)?'
@@ -405,6 +415,7 @@
         ]
       }
     ]
+
   'string-double-quoted':
     'begin': '"'
     'beginCaptures':
