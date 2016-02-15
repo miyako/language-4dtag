@@ -149,6 +149,9 @@
             'include': '#fourd-tag-with-formula'
           }
           {
+            'include': '#fourd-script'
+          }
+          {
             'include': '#fourd-dollar'
           }
           {
@@ -549,11 +552,14 @@
         'include': '#fourd-tag-with-formula'
       }
       {
+        'include': '#fourd-script'
+      }
+      {
         'include': '#fourd-dollar'
       }
     ]
   'fourd-tag-with-formula':
-    'begin': '(?i:(<!--\\s*)((?:#?4D)(CODE|TEXT|HTML|EVAL|SCRIPT|INCLUDE|BASE|IF|ELSEIF|LOOP)))\\s+'
+    'begin': '(?i:(<!--\\s*)((?:#?4D)(CODE|TEXT|HTML|EVAL|INCLUDE|BASE|IF|ELSEIF|LOOP)))\\s+'
     'captures':
       '1':
         'name': 'fourd-tag.comment.xml'
@@ -734,3 +740,12 @@
   'fourd-constant':
     'match': '[a-zA-Z_][a-zA-Z0-9 _]*:K\\d+:\\d+'
     'name': 'fourd-constant.constant.other.4dtag'
+  'fourd-script':
+    'begin': '(?i:(<!--\\s*)((?:4D)(SCRIPT)))\\s*\\/'
+    'captures':
+      '1':
+        'name': 'fourd-script.comment.xml'
+      '2':
+        'name': 'fourd-tag.entity.name.section.4dtag'
+    'end': '\\s*(-->)'
+    'name': 'meta.fourd-tag.4dtag'
