@@ -121,7 +121,7 @@
     'include': '#embedded-code'
   }
   {
-    'begin': '(?:^\\s+)?(<)((?i:style))\\b(?![^>]*/>)'
+    'begin': '(?:^\\s+)?(<)((?:s)(?i:tyle))\\b(?![^>]*/>)'
     'captures':
       '1':
         'name': 'punctuation.definition.tag.html'
@@ -129,7 +129,7 @@
         'name': 'entity.name.tag.style.html'
       '3':
         'name': 'punctuation.definition.tag.html'
-    'end': '(</)((?i:style))(>)(?:\\s*\\n)?'
+    'end': '(</)((?:s)(?i:tyle))(>)(?:\\s*\\n)?'
     'name': 'source.css.embedded.html'
     'patterns': [
       {
@@ -140,7 +140,7 @@
         'beginCaptures':
           '1':
             'name': 'punctuation.definition.tag.html'
-        'end': '(?=</(?i:style))'
+        'end': '(?=</(?:s)(?i:tyle))'
         'patterns': [
           {
             'include': '#fourd-tag-without-formula'
