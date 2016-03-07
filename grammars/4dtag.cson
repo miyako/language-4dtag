@@ -452,10 +452,16 @@
     'endCaptures':
       '0':
         'name': 'punctuation.definition.string.end.html'
-    'name': 'string.quoted.single.html'
+    'name': ''
     'patterns': [
       {
         'include': '#embedded-code'
+      }
+      {
+        'include': '#fourd-tag-with-formula'
+      }
+      {
+        'include': '#fourd-dollar'
       }
       {
         'include': '#entities'
@@ -479,7 +485,7 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.html'
-        'contentName': 'meta.toc-list.id.html'
+        'contentName': ''
         'end': '"'
         'endCaptures':
           '0':
@@ -488,6 +494,12 @@
         'patterns': [
           {
             'include': '#embedded-code'
+          }
+          {
+            'include': '#fourd-tag-with-formula'
+          }
+          {
+            'include': '#fourd-dollar'
           }
           {
             'include': '#entities'
@@ -499,15 +511,21 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.html'
-        'contentName': 'meta.toc-list.id.html'
+        'contentName': ''
         'end': '\''
         'endCaptures':
           '0':
             'name': 'punctuation.definition.string.end.html'
-        'name': 'string.quoted.single.html'
+        'name': ''
         'patterns': [
           {
             'include': '#embedded-code'
+          }
+          {
+            'include': '#fourd-tag-with-formula'
+          }
+          {
+            'include': '#fourd-dollar'
           }
           {
             'include': '#entities'
