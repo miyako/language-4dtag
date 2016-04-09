@@ -577,7 +577,7 @@
       }
     ]
   'fourd-tag-with-formula':
-    'begin': '(?i:(<!--\\s*)((?:#?4D)(CODE|TEXT|HTML|EVAL|INCLUDE|BASE|IF|ELSEIF|LOOP)))\\s+'
+    'begin': '(?i:(<!--\\s*)((?:#?4D)(CODE|TEXT|VAR|HTMLVAR|HTML|EVAL|INCLUDE|BASE|IF|ELSEIF|LOOP)))\\s+'
     'captures':
       '1':
         'name': 'fourd-tag.comment.xml'
