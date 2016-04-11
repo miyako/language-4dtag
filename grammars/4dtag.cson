@@ -602,6 +602,9 @@
         'include': '#fourd-constant-string'
       }
       {
+        'include': '#fourd-local-variable'
+      }
+      {
         'include': '#fourd-variable'
       }
       {
@@ -650,6 +653,9 @@
       }
       {
         'include': '#fourd-constant-string'
+      }
+      {
+        'include': '#fourd-local-variable'
       }
       {
         'include': '#fourd-variable'
@@ -710,8 +716,11 @@
       '0':
         'name': 'fourd-constant-string.string.quoted.4dtag'
     'name': 'fourd-constant-string.string.quoted.4dtag'
-  'fourd-variable':
+  'fourd-local-variable':
     'match': '\\$[\\p{L}_][\\p{L}0-9 _]*'
+    'name': 'fourd-local-variable.variable.other.4dtag'
+  'fourd-variable':
+    'match': '[\\p{L}_][\\p{L}0-9 _]*'
     'name': 'fourd-variable.variable.other.4dtag'
   'fourd-table':
     'match': '\\[[\\p{L}_][\\p{L}0-9 _]*:\\d+\\]'
