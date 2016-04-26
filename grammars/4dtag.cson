@@ -723,10 +723,10 @@
     'match': '[\\p{L}_][\\p{L}0-9 _]*'
     'name': 'fourd-variable.variable.other.4dtag'
   'fourd-table':
-    'match': '\\[[\\p{L}_][\\p{L}0-9 _]*:\\d+\\]'
+    'match': '\\[[\\p{L}_][\\p{L}0-9 _]*(:\\d+)?\\]'
     'name': 'fourd-table.storage.type.table.4dtag'
   'fourd-field':
-    'match': '\\[[\\p{L}_][\\p{L}0-9 _]*:\\d+\\][\\p{L}_][\\p{L}0-9 _]*:\\d+'
+    'match': '\\[[\\p{L}_][\\p{L}0-9 _]*(:\\d+)?\\][\\p{L}_][\\p{L}0-9 _]*(:\\d+)?'
     'name': 'fourd-table.storage.type.field.4dtag'
   'fourd-control':
     'patterns': [
