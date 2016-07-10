@@ -602,6 +602,9 @@
         'include': '#fourd-constant-string'
       }
       {
+        'include': '#fourd-constant'
+      }
+      {
         'include': '#fourd-local-variable'
       }
       {
@@ -624,9 +627,6 @@
       }
       {
         'include': '#fourd-parameter'
-      }
-      {
-        'include': '#fourd-constant'
       }
     ]
   'fourd-dollar':
@@ -655,6 +655,9 @@
         'include': '#fourd-constant-string'
       }
       {
+        'include': '#fourd-constant'
+      }
+      {
         'include': '#fourd-local-variable'
       }
       {
@@ -677,9 +680,6 @@
       }
       {
         'include': '#fourd-parameter'
-      }
-      {
-        'include': '#fourd-constant'
       }
     ]
   'fourd-tag-without-formula':
@@ -765,7 +765,7 @@
     'match': '\\$[1-9][0-9]*'
     'name': 'fourd-parameter.variable.parameter.4dtag'
   'fourd-constant':
-    'match': '[\\p{L}_][\\p{L}0-9 _]*:K\\d+:\\d+'
+    'match': '[\\p{L}_][\\p{L}0-9 _]*:(?i:K)\\d+:\\d+'
     'name': 'fourd-constant.constant.other.4dtag'
   'fourd-script':
     'begin': '(?i:(<!--\\s*)((?:4D)(SCRIPT)))\\s*\\/'
