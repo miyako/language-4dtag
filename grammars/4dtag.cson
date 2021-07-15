@@ -731,13 +731,13 @@
   'fourd-control':
     'patterns': [
       {
-      'match': '^\\s*(?i:(if|si|while|tant que|for|boucle)\\s*\\()'
+      'match': '^\\s*(?i:(if|si|while|tant que|for each|pour chaque|for|boucle)\\s*\\()'
       'captures':
         '1':
           'name': 'fourd-control-begin.keyword.control.4dtag'
       }
       {
-      'match': '^\\s*(?i:(end if|fin de si|end while|fin tant que|end for|fin de boucle|case of|else|end case|au cas ou|sinon|fin de cas))'
+      'match': '^\\s*(?i:(end if|fin de si|end while|fin tant que|end for each|fin de chaque|end for|fin de boucle|case of|else|end case|au cas ou|sinon|fin de cas))'
       'captures':
         '1':
           'name': 'fourd-control-end.keyword.control.4dtag'
